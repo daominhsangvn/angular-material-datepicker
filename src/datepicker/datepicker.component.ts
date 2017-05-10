@@ -8,8 +8,7 @@ import { LANG_DE } from './lang-de';
 
 @Component({
   selector: 'md-datepicker',
-  templateUrl: './datepicker.component.html',
-  styleUrls: ['./datepicker.component.css']
+  templateUrl: './datepicker.component.html'
 })
 export class DatePickerComponent implements OnInit {
 
@@ -19,13 +18,13 @@ export class DatePickerComponent implements OnInit {
   dayNames: Array<Weekday>;
   monthNames: Array<Month>;
   formattedDate: string;
-  
-  @Output() 
+
+  @Output()
   dateChange = new EventEmitter<Date>();
 
-  @Input() 
-  get date(): Date { 
-    return this.dateVal; 
+  @Input()
+  get date(): Date {
+    return this.dateVal;
   };
   set date(val: Date) {
     this.dateVal = val;
