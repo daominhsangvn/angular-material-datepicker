@@ -15,7 +15,7 @@
     ]
   },
   "files": [
-    "datepicker/datepicker.module.ts"
+    "../index.ts"
   ],
   "angularCompilerOptions": {
     "genDir": "../aot",

@@ -18,7 +18,7 @@
     "url": "https://github.com/GrillPhil/angular-material-datepicker/issues"
   },
   "homepage": "https://github.com/GrillPhil/angular-material-datepicker#readme",
-  "main": "./dist/datepicker.module.js",
+  "main": "./dist/index.js",
   "angular-cli": {},
   "scripts": {
     "ng": "ng",
