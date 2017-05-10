@@ -83,8 +83,8 @@ export class DatePickerComponent implements ControlValueAccessor, OnInit {
   }
 
   private formatDate(date:Date): string {
-    if (date === undefined) {
-      return ;
+    if (!date) {
+      return '';
     }
     let dayOfWeek = this.dayNames[date.getDay()].short;
     let dayOfMonth = date.getDate();
