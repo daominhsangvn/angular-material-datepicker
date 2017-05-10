@@ -3,7 +3,8 @@ import { CommonModule } from '@angular/common';
 import {
   MdRippleModule,
   MdButtonModule,
-  MdIconModule
+  MdIconModule,
+  MdDialogModule
 } from '@angular/material';
 import { DatePickerComponent } from './datepicker.component';
 import { CalendarComponent } from './calendar.component';
@@ -18,7 +19,8 @@ import { CalendarService } from './calendar.service';
     CommonModule,
     MdRippleModule,
     MdButtonModule,
-    MdIconModule
+    MdIconModule,
+    MdDialogModule
   ],
   exports: [
     DatePickerComponent

@@ -9,7 +9,7 @@ import { LANG_DE } from './lang-de';
 @Component({
   selector: 'md-calendar',
   templateUrl: './calendar.component.html',
-  styleUrls: ['./calendar.component.scss'],
+  // styleUrls: ['./calendar.component.scss'],
   animations: [
     trigger('calendarAnimation', [
       transition('* => left', [

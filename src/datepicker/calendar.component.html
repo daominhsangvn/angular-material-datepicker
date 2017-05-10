@@ -1,8 +1,8 @@
-<div class="header">
+<div class="header ng-material-datepicker">
     <div class="year">{{ currentYear }}</div>
     <div class="date">{{ currentDayOfWeek.short }}, {{ currentDay}}. {{ currentMonth.short }}</div>
 </div>
-<div class="nav">
+<div class="nav ng-material-datepicker">
     <button md-icon-button class="left" (click)="onPrevMonth()">
         <md-icon>keyboard_arrow_left</md-icon>
     </button>
@@ -13,7 +13,7 @@
         <md-icon>keyboard_arrow_right</md-icon>
     </button>
 </div>
-<div class="content">
+<div class="content ng-material-datepicker">
     <div class="labels">
         <div class="label" *ngFor="let day of dayNames">
             {{ day.letter }}
@@ -27,7 +27,7 @@
         </div>
     </div>
 </div>
-<div class="footer">
+<div class="footer ng-material-datepicker">
     <a md-button (click)="onToday()">Today</a>
     <a md-button (click)="onCancel()">Cancel</a>
     <a md-button (click)="onOk()">Ok</a>
