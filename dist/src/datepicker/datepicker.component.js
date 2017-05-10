@@ -26,11 +26,14 @@ var DatePickerComponent = (function () {
             return this.dateVal;
         },
         set: function (val) {
+            var _this = this;
             this.dateVal = val;
             // Update ngModel
             this._onValueChange(val);
-            // trigger dateChange event
-            this.dateChange.emit(val);
+            setTimeout(function () {
+                // trigger dateChange event
+                _this.dateChange.emit(val);
+            });
             // format date
             this.formattedDate = this.formatDate(val);
         },
@@ -58,8 +61,8 @@ var DatePickerComponent = (function () {
         });
     };
     DatePickerComponent.prototype.formatDate = function (date) {
-        if (date === undefined) {
-            return;
+        if (!date) {
+            return '';
         }
         var dayOfWeek = this.dayNames[date.getDay()].short;
         var dayOfMonth = date.getDate();

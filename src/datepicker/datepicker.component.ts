@@ -1,4 +1,4 @@
-import { Component, Output, Input, EventEmitter, OnInit, forwardRef } from '@angular/core';
+import {Component, Output, Input, EventEmitter, OnInit, forwardRef} from '@angular/core';
 import {
   ControlValueAccessor,
   NG_VALUE_ACCESSOR
@@ -10,12 +10,12 @@ const DATE_PICKER_VALUE_ACCESSOR = {
   useExisting: forwardRef(() => DatePickerComponent),
   multi: true
 };
-import { MdDialog } from '@angular/material';
+import {MdDialog} from '@angular/material';
 
-import { CalendarComponent } from './calendar.component';
-import { Month } from './month.model';
-import { Weekday } from './weekday.model';
-import { LANG_EN } from './lang-en';
+import {CalendarComponent} from './calendar.component';
+import {Month} from './month.model';
+import {Weekday} from './weekday.model';
+import {LANG_EN} from './lang-en';
 
 @Component({
   selector: 'md-datepicker',
@@ -30,7 +30,7 @@ import { LANG_EN } from './lang-en';
 })
 export class DatePickerComponent implements ControlValueAccessor, OnInit {
 
-  private readonly dialog:MdDialog;
+  private readonly dialog: MdDialog;
   private dateVal: Date;
 
   dayNames: Array<Weekday>;
@@ -44,12 +44,15 @@ export class DatePickerComponent implements ControlValueAccessor, OnInit {
   get date(): Date {
     return this.dateVal;
   };
+
   set date(val: Date) {
     this.dateVal = val;
     // Update ngModel
     this._onValueChange(val);
-    // trigger dateChange event
-    this.dateChange.emit(val);
+    setTimeout(() => {
+      // trigger dateChange event
+      this.dateChange.emit(val);
+    });
     // format date
     this.formattedDate = this.formatDate(val);
   }
@@ -82,7 +85,7 @@ export class DatePickerComponent implements ControlValueAccessor, OnInit {
     });
   }
 
-  private formatDate(date:Date): string {
+  private formatDate(date: Date): string {
     if (!date) {
       return '';
     }
