@@ -57,7 +57,7 @@ export { DatePickerComponent };
 DatePickerComponent.decorators = [
     { type: Component, args: [{
                 selector: 'md-datepicker',
-                templateUrl: './datepicker.component.html'
+                template: "\n    <md-input-container>\n      <input mdInput (click)=\"openDialog()\" mdInput [value]=\"formattedDate\" (ngModelChange)=\"onChange($event)\">\n      <md-icon mdPrefix>date_range</md-icon>\n    </md-input-container>\n  "
             },] },
 ];
 /** @nocollapse */

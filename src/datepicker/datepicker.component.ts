@@ -8,7 +8,12 @@ import { LANG_EN } from './lang-en';
 
 @Component({
   selector: 'md-datepicker',
-  templateUrl: './datepicker.component.html'
+  template: `
+    <md-input-container>
+      <input mdInput (click)="openDialog()" mdInput [value]="formattedDate" (ngModelChange)="onChange($event)">
+      <md-icon mdPrefix>date_range</md-icon>
+    </md-input-container>
+  `
 })
 export class DatePickerComponent implements OnInit {
 

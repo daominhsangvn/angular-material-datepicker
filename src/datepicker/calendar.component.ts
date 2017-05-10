@@ -8,7 +8,42 @@ import { LANG_DE } from './lang-de';
 
 @Component({
   selector: 'md-calendar',
-  templateUrl: './calendar.component.html',
+  template: `
+        <div class="header ng-material-datepicker">
+            <div class="year">{{ currentYear }}</div>
+            <div class="date">{{ currentDayOfWeek.short }}, {{ currentDay}}. {{ currentMonth.short }}</div>
+        </div>
+        <div class="nav ng-material-datepicker">
+            <button md-icon-button class="left" (click)="onPrevMonth()">
+                <md-icon>keyboard_arrow_left</md-icon>
+            </button>
+            <div class="title">
+                <div [@calendarAnimation]="animate">{{ displayMonth.full }} {{ displayYear }}</div>
+            </div>
+            <button md-icon-button class="right" (click)="onNextMonth()">
+                <md-icon>keyboard_arrow_right</md-icon>
+            </button>
+        </div>
+        <div class="content ng-material-datepicker">
+            <div class="labels">
+                <div class="label" *ngFor="let day of dayNames">
+                    {{ day.letter }}
+                </div>
+            </div>
+            <div [@calendarAnimation]="animate" class="month">
+                <div *ngFor="let day of displayDays" class="day" (click)="onSelectDate(day)" [ngClass]="getDayBackgroundColor(day)">
+                    <span *ngIf="day != 0" [ngClass]="getDayForegroundColor(day)">
+                        {{ day.getDate() }}
+                      </span>
+                </div>
+            </div>
+        </div>
+        <div class="footer ng-material-datepicker">
+            <a md-button (click)="onToday()">Today</a>
+            <a md-button (click)="onCancel()">Cancel</a>
+            <a md-button (click)="onOk()">Ok</a>
+        </div>
+  `,
   // styleUrls: ['./calendar.component.scss'],
   animations: [
     trigger('calendarAnimation', [
