@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
+  MdInputModule,
   MdRippleModule,
   MdButtonModule,
   MdIconModule,
@@ -17,6 +18,7 @@ import { CalendarService } from './calendar.service';
   ],
   imports: [
     CommonModule,
+    MdInputModule,
     MdRippleModule,
     MdButtonModule,
     MdIconModule,

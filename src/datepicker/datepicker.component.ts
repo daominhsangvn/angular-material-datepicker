@@ -4,7 +4,7 @@ import { MdDialog } from '@angular/material';
 import { CalendarComponent } from './calendar.component';
 import { Month } from './month.model';
 import { Weekday } from './weekday.model';
-import { LANG_DE } from './lang-de';
+import { LANG_EN } from './lang-en';
 
 @Component({
   selector: 'md-datepicker',
@@ -34,8 +34,8 @@ export class DatePickerComponent implements OnInit {
 
   constructor(dialog: MdDialog) {
     this.dialog = dialog;
-    this.dayNames = LANG_DE.weekDays;
-    this.monthNames = LANG_DE.months;
+    this.dayNames = LANG_EN.weekDays;
+    this.monthNames = LANG_EN.months;
   }
 
   ngOnInit() {
