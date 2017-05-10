@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { animate, trigger, transition, style, keyframes } from '@angular/animations';
 import { CalendarService } from './calendar.service';
-import { LANG_DE } from './lang-de';
+import { LANG_EN } from './lang-en';
 var CalendarComponent = (function () {
     function CalendarComponent(calendarService) {
         this.dateChange = new EventEmitter();
@@ -9,8 +9,8 @@ var CalendarComponent = (function () {
         this.submit = new EventEmitter();
         this.today = new Date();
         this.calendarService = calendarService;
-        this.dayNames = LANG_DE.weekDays;
-        this.monthNames = LANG_DE.months;
+        this.dayNames = LANG_EN.weekDays;
+        this.monthNames = LANG_EN.months;
     }
     Object.defineProperty(CalendarComponent.prototype, "date", {
         get: function () {

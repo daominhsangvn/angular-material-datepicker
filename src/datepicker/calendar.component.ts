@@ -4,7 +4,7 @@ import { animate, trigger, transition, style, keyframes } from '@angular/animati
 import { CalendarService } from './calendar.service';
 import { Month } from './month.model';
 import { Weekday } from './weekday.model';
-import { LANG_DE } from './lang-de';
+import { LANG_EN } from './lang-en';
 
 @Component({
   selector: 'md-calendar',
@@ -107,8 +107,8 @@ export class CalendarComponent implements OnInit {
 
   constructor(calendarService: CalendarService) {
     this.calendarService = calendarService;
-    this.dayNames = LANG_DE.weekDays;
-    this.monthNames = LANG_DE.months;
+    this.dayNames = LANG_EN.weekDays;
+    this.monthNames = LANG_EN.months;
   }
 
   ngOnInit() {
