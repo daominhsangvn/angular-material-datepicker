@@ -1,4 +1,5 @@
-import { animate, Component, EventEmitter, Input, keyframes, OnInit, Output, style, transition, trigger } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { animate, trigger, transition, style, keyframes } from '@angular/animations';
 
 import { CalendarService } from './calendar.service';
 import { Month } from './month.model';
@@ -33,13 +34,13 @@ export class CalendarComponent implements OnInit {
   private readonly calendarService: CalendarService;
 
   private dateVal: Date;
-  
-  @Output() 
+
+  @Output()
   dateChange = new EventEmitter<Date>();
 
-  @Input() 
-  get date(): Date { 
-    return this.dateVal; 
+  @Input()
+  get date(): Date {
+    return this.dateVal;
   };
   set date(val: Date) {
     this.dateVal = val;
@@ -47,15 +48,15 @@ export class CalendarComponent implements OnInit {
     this.updateDate(val);
   }
 
-  @Output() 
+  @Output()
   cancel = new EventEmitter<void>();
 
-  @Output() 
+  @Output()
   submit = new EventEmitter<Date>();
 
   dayNames: Array<Weekday>;
   monthNames: Array<Month>;
-  today: Date = new Date();  
+  today: Date = new Date();
 
   currentMonth: Month;
   currentMonthNumber: number;
@@ -120,7 +121,7 @@ export class CalendarComponent implements OnInit {
       return 'day-foreground-today';
     } else {
       return 'day-foreground-normal';
-    }    
+    }
   }
 
   onToday() {

@@ -4,13 +4,13 @@
 </div>
 <div class="nav">
     <button md-icon-button class="left" (click)="onPrevMonth()">
-        <md-icon>chevron_left</md-icon>
+        <md-icon>keyboard_arrow_left</md-icon>
     </button>
     <div class="title">
         <div [@calendarAnimation]="animate">{{ displayMonth.full }} {{ displayYear }}</div>
     </div>
     <button md-icon-button class="right" (click)="onNextMonth()">
-        <md-icon>chevron_right</md-icon>
+        <md-icon>keyboard_arrow_right</md-icon>
     </button>
 </div>
 <div class="content">
