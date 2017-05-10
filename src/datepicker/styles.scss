@@ -1,10 +1,10 @@
-
+@import '~@angular/material/theming';
 @mixin calendar-theme($theme) {
   $primary: map-get($theme, primary);
 
   .header.ng-material-datepicker {
     padding: 16px;
-    background-color:mat-color($primary);
+    background-color: mat-color($primary);
   }
   .footer.ng-material-datepicker [md-button] {
     color: mat-color($primary);
