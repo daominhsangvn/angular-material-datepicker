@@ -32,7 +32,7 @@ export class DatePickerComponent implements ControlValueAccessor, OnInit {
 
   private readonly dialog: MdDialog;
   private dateVal: Date;
-  private _format = 'mm/dd/yyyy';
+  private _format = 'MM/dd/yyyy';
 
   dayNames: Array<Weekday>;
   monthNames: Array<Month>;
