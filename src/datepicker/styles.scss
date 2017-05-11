@@ -129,3 +129,18 @@
   font-weight: 600;
   text-transform: uppercase;
 }
+
+md-datepicker{
+  box-sizing: border-box;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  > md-input-container {
+    flex: 1;
+    box-sizing: border-box;
+  }
+}

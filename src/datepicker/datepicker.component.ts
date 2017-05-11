@@ -20,7 +20,7 @@ import {LANG_EN} from './lang-en';
 @Component({
   selector: 'md-datepicker',
   template: `
-    <md-input-container>
+    <md-input-container flex>
       <input mdInput (click)="openDialog()" mdInput [value]="formattedDate" (ngModelChange)="onChange($event)">
       <md-icon mdPrefix>date_range</md-icon>
     </md-input-container>
@@ -32,13 +32,23 @@ export class DatePickerComponent implements ControlValueAccessor, OnInit {
 
   private readonly dialog: MdDialog;
   private dateVal: Date;
+  private _format = 'mm/dd/yyyy';
 
   dayNames: Array<Weekday>;
   monthNames: Array<Month>;
   formattedDate: string;
 
   @Output()
-  dateChange = new EventEmitter<Date>();
+  public dateChange = new EventEmitter<Date>();
+
+  @Input()
+  get format(): string {
+    return this._format;
+  }
+
+  set format(value) {
+    this._format = value;
+  }
 
   @Input()
   get date(): Date {
@@ -85,15 +95,95 @@ export class DatePickerComponent implements ControlValueAccessor, OnInit {
     });
   }
 
+  private _MONTH_NAMES = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  private _DAY_NAMES = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+
+  private _LZ(x) {
+    return (x < 0 || x > 9 ? "" : "0") + x;
+  }
+
+  // http://mattkruse.com/javascript/date/source.html
+  private _formatDate(date, format) {
+    format = format + "";
+    let result = "";
+    let i_format = 0;
+    let c = "";
+    let token = "";
+    let y = date.getYear().toString();
+    let M = date.getMonth() + 1;
+    let d = date.getDate();
+    let E = date.getDay();
+    let Ho = date.getHours();
+    let m = date.getMinutes();
+    let s = date.getSeconds();
+    let yyyy, yy, MMM, MM, dd, hh, h, mm, ss, ampm, HH, H, KK, K, kk, k;
+    // Convert real date parts into formatted versions
+    let value = {};
+    if (y.length < 4) {
+      y = (y - 0 + 1900).toString();
+    }
+    value["y"] = "" + y;
+    value["yyyy"] = y;
+    value["yy"] = y.substring(2, 4);
+    value["M"] = M;
+    value["MM"] = this._LZ(M);
+    value["MMM"] = this._MONTH_NAMES[M - 1];
+    value["NNN"] = this._MONTH_NAMES[M + 11];
+    value["d"] = d;
+    value["dd"] = this._LZ(d);
+    value["E"] = this._DAY_NAMES[E + 7];
+    value["EE"] = this._DAY_NAMES[E];
+    value["H"] = Ho;
+    value["HH"] = this._LZ(Ho);
+    if (Ho == 0) {
+      value["h"] = 12;
+    }
+    else if (Ho > 12) {
+      value["h"] = Ho - 12;
+    }
+    else {
+      value["h"] = Ho;
+    }
+    value["hh"] = this._LZ(value["h"]);
+    if (Ho > 11) {
+      value["K"] = Ho - 12;
+    } else {
+      value["K"] = Ho;
+    }
+    value["k"] = Ho + 1;
+    value["KK"] = this._LZ(value["K"]);
+    value["kk"] = this._LZ(value["k"]);
+    if (Ho > 11) {
+      value["a"] = "PM";
+    }
+    else {
+      value["a"] = "AM";
+    }
+    value["m"] = m;
+    value["mm"] = this._LZ(m);
+    value["s"] = s;
+    value["ss"] = this._LZ(s);
+    while (i_format < format.length) {
+      c = format.charAt(i_format);
+      token = "";
+      while ((format.charAt(i_format) == c) && (i_format < format.length)) {
+        token += format.charAt(i_format++);
+      }
+      if (value[token] != null) {
+        result = result + value[token];
+      }
+      else {
+        result = result + token;
+      }
+    }
+    return result;
+  }
+
   private formatDate(date: Date): string {
     if (!date) {
       return '';
     }
-    let dayOfWeek = this.dayNames[date.getDay()].short;
-    let dayOfMonth = date.getDate();
-    let month = this.monthNames[date.getMonth()].short;
-    let year = date.getFullYear();
-    return `${dayOfWeek}, ${dayOfMonth}. ${month} ${year}`;
+    return this._formatDate(date, this._format);
   }
 
   // ngModel
